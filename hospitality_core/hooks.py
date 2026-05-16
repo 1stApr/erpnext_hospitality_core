@@ -54,7 +54,7 @@ doc_events = {
     }
 }
 
-after_install = "hospitality_core.setup.after_install"
+after_install = "hospitality_core.install.after_install"
 
 # Scheduled Tasks
 # changed daily audit to run at 2 PM (14:00) per requirements
