@@ -19,7 +19,8 @@ def diag():
             print(f"  Balance Must Be: {acc.balance_must_be}")
             
             # Check current balance
-            balance = frappe.db.get_value("GL Entry", {"account": acc.name, "is_cancelled": 0}, "sum(debit) - sum(credit)")
+            bal_res = frappe.db.sql("SELECT sum(debit) - sum(credit) FROM `tabGL Entry` WHERE account=%s AND is_cancelled=0", (acc.name,))
+            balance = bal_res[0][0] if bal_res and bal_res[0][0] else 0
             print(f"  Current Balance (Dr-Cr): {balance}")
 
 if __name__ == "__main__":
